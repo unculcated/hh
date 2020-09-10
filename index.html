@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🏡 Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="clock-container">
+            <div class="clock-set"><div class="clock-title">California</div><div id="clock1" class="clock"></div><div id="day1" class="day"></div></div>
+            <div class="clock-set"><div class="clock-title">Toronto</div><div id="clock2" class="clock"></div><div id="day2" class="day"></div></div>
+            <div class="clock-set"><div class="clock-title">New York</div><div id="clock3" class="clock"></div><div id="day3" class="day"></div></div>
+            <div class="clock-set"><div class="clock-title">UK</div><div id="clock4" class="clock"></div><div id="day4" class="day"></div></div>
+            <div class="clock-set"><div class="clock-title">Italy</div><div id="clock5" class="clock"></div><div id="day5" class="day"></div></div>
+        </div>
+        <div class="bookmark-container">
+            <div class="bookmark-set">
+                <div class="bookmark-title">Section 1</div>
+                <div class="bookmark-inner-container">
+                    <a class="bookmark" href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a>
+                    <a class="bookmark" href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a>
+                    <a class="bookmark" href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a>
+                    <a class="bookmark" href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a>
+                    <a class="bookmark" href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a>
+                </div>
+            </div>
+            <div class="bookmark-set">
+                <div class="bookmark-title">Section 2</div>
+                <div class="bookmark-inner-container">
+                    <a class="bookmark" href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a>
+                    <a class="bookmark" href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a>
+                    <a class="bookmark" href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a>
+                    <a class="bookmark" href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a>
+                    <a class="bookmark" href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a>
+                </div>
+            </div>
+            <div class="bookmark-set">
+                <div class="bookmark-title">Section 3</div>
+                <div class="bookmark-inner-container">
+                    <a class="bookmark" href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a>
+                    <a class="bookmark" href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a>
+                    <a class="bookmark" href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a>
+                    <a class="bookmark" href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a>
+                    <a class="bookmark" href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a>
+                </div>
+            </div>
+            <div class="bookmark-set">
+                <div class="bookmark-title">Section 4</div>
+                <div class="bookmark-inner-container">
+                    <a class="bookmark" href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a>
+                    <a class="bookmark" href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a>
+                    <a class="bookmark" href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a>
+                    <a class="bookmark" href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a>
+                    <a class="bookmark" href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // this returns an array containing two strings, representing
+        // the time and day at this moment in the given timezone
+        function getTime(timeZone) {
+            let weekdays = [
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday"
+            ];
+            let date = new Date().toLocaleString("en-US", {timeZone: timeZone});
+            date = new Date(date);
+            let dayName = weekdays[date.getDay()],
+                min = date.getMinutes(),
+                sec = date.getSeconds(),
+                hour = date.getHours();
+
+            return ["" +
+                (hour < 10 ? ("0" + hour) : hour) + ":" +
+                (min < 10 ? ("0" + min) : min), dayName];
+        }
+
+        window.onload = () => {
+            // timezone names: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+            update = () => {
+                let t1 = getTime("America/Los_Angeles");
+                document.getElementById("clock1").innerHTML = t1[0];
+                document.getElementById("day1").innerHTML = t1[1];
+
+                let t2 = getTime("America/Toronto");
+                document.getElementById("clock2").innerHTML = t2[0];
+                document.getElementById("day2").innerHTML = t2[1];
+                
+                let t3 = getTime("America/New_York");
+                document.getElementById("clock3").innerHTML = t3[0];
+                document.getElementById("day3").innerHTML = t3[1];
+                
+                let t4 = getTime("Europe/London");
+                document.getElementById("clock4").innerHTML = t4[0];
+                document.getElementById("day4").innerHTML = t4[1];
+                
+                let t5 = getTime("Europe/Rome");
+                document.getElementById("clock5").innerHTML = t5[0];
+                document.getElementById("day5").innerHTML = t5[1];
+            };
+            update();
+            setInterval( update,1000);
+        }
+    </script>
+</body>
+</html>
